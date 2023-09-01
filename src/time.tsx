@@ -1,4 +1,4 @@
-import { ActionPanel, Action, Icon, List, getPreferenceValues } from '@raycast/api'
+import { Action, ActionPanel, Icon, List, getPreferenceValues } from '@raycast/api'
 import dayjs from 'dayjs'
 
 interface Preferences {
@@ -25,7 +25,7 @@ const timeFormatCustom: string[] = ['YYYYMMDDHHmm']
 const allTimeFormats: string[] = [...timeFormatCustom, ...timeFormatDefault]
 
 const today: Date = new Date()
-const ITEMS: TimeFormatItem[] = allTimeFormats.map(value => {
+const ITEMS: TimeFormatItem[] = allTimeFormats.map((value) => {
   return {
     id: value + Date.now(),
     title: dayjs(today).format(value),

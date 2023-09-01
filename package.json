@@ -3,9 +3,9 @@
   "name": "dev_tool",
   "title": "dev tool",
   "description": "Personal preference for development tools.",
-  "icon": "command-icon.png",
   "author": "XuQuentinYang",
   "license": "MIT",
+  "icon": "command-icon.png",
   "commands": [
     {
       "name": "time",
@@ -26,23 +26,24 @@
       ]
     }
   ],
-  "dependencies": {
-    "@raycast/api": "^1.54.1",
-    "dayjs": "^1.11.8"
-  },
-  "devDependencies": {
-    "@raycast/eslint-config": "1.0.5",
-    "@types/node": "18.8.3",
-    "@types/react": "18.0.9",
-    "eslint": "^7.32.0",
-    "prettier": "^2.5.1",
-    "typescript": "^4.4.3"
-  },
   "scripts": {
     "build": "ray build -e dist",
     "dev": "ray develop",
     "fix-lint": "ray lint --fix",
     "lint": "ray lint",
     "publish": "npx @raycast/api@latest publish"
+  },
+  "dependencies": {
+    "@raycast/api": "^1.54.1",
+    "dayjs": "^1.11.8"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config-react": "^0.41.0",
+    "@raycast/eslint-config": "1.0.5",
+    "@types/node": "18.8.3",
+    "@types/react": "18.0.9",
+    "eslint": "^8.48.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.4.3"
   }
 }
