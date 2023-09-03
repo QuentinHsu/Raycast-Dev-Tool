@@ -24,6 +24,24 @@
           "default": ""
         }
       ]
+    },
+    {
+      "name": "id-card",
+      "title": "Id Card",
+      "icon": "id-card.png",
+      "description": "random Id Card",
+      "mode": "view",
+      "preferences": [
+        {
+          "name": "defaultPrefix",
+          "type": "textfield",
+          "required": false,
+          "title": "Default Prefix",
+          "label": "Selected Content",
+          "description": "Default prefix content",
+          "default": ""
+        }
+      ]
     }
   ],
   "scripts": {
