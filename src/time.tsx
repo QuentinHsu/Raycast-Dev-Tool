@@ -1,54 +1,65 @@
-import { Action, ActionPanel, Icon, List, getPreferenceValues } from '@raycast/api'
-import dayjs from 'dayjs'
+import {
+  Action,
+  ActionPanel,
+  getPreferenceValues,
+  Icon,
+  List,
+} from "@raycast/api";
+import dayjs from "dayjs";
 
-interface Preferences {
-  defaultPrefix: string
+interface IPreferences {
+  defaultPrefix: string;
 }
 
-interface TimeFormatItem {
-  id: string
-  title: string
-  subtitle: string
-  accessory: string
+interface ITimeFormatItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  accessory: string;
 }
 
-const preferences = getPreferenceValues<Preferences>()
+const preferences = getPreferenceValues<IPreferences>();
 
 enum TimeFormatDefault {
-  dateTime = 'YYYY-MM-DD HH:mm',
-  date = 'YYYY-MM-DD',
-  fullDateTime = 'YYYY-MM-DD HH:mm:ss',
+  dateTime = "YYYY-MM-DD HH:mm",
+  date = "YYYY-MM-DD",
+  fullDateTime = "YYYY-MM-DD HH:mm:ss",
 }
 
-const timeFormatDefault: string[] = Object.values(TimeFormatDefault)
-const timeFormatCustom: string[] = ['YYYYMMDDHHmm']
-const allTimeFormats: string[] = [...timeFormatCustom, ...timeFormatDefault]
+const timeFormatDefault: string[] = Object.values(TimeFormatDefault);
 
-const today: Date = new Date()
-const ITEMS: TimeFormatItem[] = allTimeFormats.map((value) => {
+const timeFormatCustom: string[] = ["YYYYMMDDHHmm"];
+
+const allTimeFormats: string[] = [...timeFormatCustom, ...timeFormatDefault];
+
+const today: Date = new Date();
+
+const ITEMS: ITimeFormatItem[] = allTimeFormats.map((value) => {
   return {
     id: value + Date.now(),
     title: dayjs(today).format(value),
     subtitle: value,
-    accessory: 'Pressing enter copies the text.',
-  }
-})
+    accessory: "Pressing enter copies the text.",
+  };
+});
 
-const outputResults: TimeFormatItem[] = ITEMS
-const defaultPrefix = preferences.defaultPrefix ?? ''
+const outputResults: ITimeFormatItem[] = ITEMS;
+
+const defaultPrefix = preferences.defaultPrefix ?? "";
+
 if (preferences.defaultPrefix) {
   outputResults.unshift({
-    id: 'custom',
+    id: "custom",
     title: defaultPrefix + dayjs(today).format(allTimeFormats[0]),
     subtitle: preferences.defaultPrefix + allTimeFormats[0],
-    accessory: 'Pressing enter copies the text.',
-  })
+    accessory: "Pressing enter copies the text.",
+  });
 }
 
 export default function Command() {
   return (
     <List>
-      {outputResults.map(item => (
+      {outputResults.map((item) => (
         <List.Item
           key={item.id}
           icon="time.png"
@@ -62,5 +73,5 @@ export default function Command() {
         />
       ))}
     </List>
-  )
+  );
 }
